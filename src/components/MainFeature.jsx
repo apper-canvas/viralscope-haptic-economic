@@ -313,16 +313,22 @@ tooltip: {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="input-field flex items-center justify-between cursor-pointer hover:border-primary focus:border-primary"
+className="input-field flex items-center justify-between cursor-pointer hover:border-primary focus:border-primary"
               >
                 <span className="flex items-center gap-2">
-                  <ApperIcon name="Globe" className="w-4 h-4 text-surface-500" />
-                  {selectedCountry === 'global' 
-                    ? 'Global Overview' 
-                    : countryData.find(c => c.code === selectedCountry)?.name || 'Select Country'
-                  }
+                  {selectedCountry === 'global' ? (
+                    <>
+                      <ApperIcon name="Globe" className="w-4 h-4 text-surface-500" />
+                      Global Overview
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-lg">{countryData.find(c => c.code === selectedCountry)?.flag}</span>
+                      {countryData.find(c => c.code === selectedCountry)?.name || 'Select Country'}
+                    </>
+                  )}
                 </span>
-                <ApperIcon 
+                <ApperIcon
                   name="ChevronDown" 
                   className={`w-4 h-4 text-surface-500 transition-transform duration-200 ${
                     isDropdownOpen ? 'rotate-180' : ''
