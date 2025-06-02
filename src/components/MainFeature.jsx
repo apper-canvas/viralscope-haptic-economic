@@ -189,22 +189,43 @@ xaxis: {
         }
       }
     },
-    tooltip: {
+tooltip: {
       shared: true,
       intersect: false,
       x: {
         formatter: function(value) {
-          const date = new Date(timeSeriesData[value - 1]?.date)
-          return date.toLocaleDateString('en-US', { 
-            weekday: 'short',
-            year: 'numeric', 
-            month: 'short', 
-            day: 'numeric' 
-          })
+          try {
+            const dataIndex = value - 1
+            const dateString = timeSeriesData[dataIndex]?.date
+            
+            if (!dateString) {
+              return 'Invalid Date'
+            }
+            
+            const date = new Date(dateString)
+            if (isNaN(date.getTime())) {
+              return 'Invalid Date'
+            }
+            
+            return date.toLocaleDateString('en-US', { 
+              weekday: 'short',
+              year: 'numeric', 
+              month: 'short', 
+              day: 'numeric' 
+            })
+          } catch (error) {
+            return 'Invalid Date'
+          }
         }
       },
       y: {
-        formatter: (value) => value.toLocaleString()
+        formatter: (value) => {
+          try {
+            return value && typeof value === 'number' ? value.toLocaleString() : '0'
+          } catch (error) {
+            return '0'
+          }
+        }
       }
     },
     legend: {
