@@ -152,12 +152,29 @@ const MainFeature = ({ onDataUpdate }) => {
       borderColor: '#e2e8f0',
       strokeDashArray: 3
     },
-    xaxis: {
+xaxis: {
       categories: timeSeriesData.map(item => item.date),
       labels: {
         style: {
           fontSize: '12px'
-        }
+        },
+        formatter: function(value) {
+          const date = new Date(value)
+          const days = parseInt(timeRange)
+          
+          if (days >= 90) {
+            // For large ranges, show abbreviated month/day
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+          } else if (days >= 30) {
+            // For medium ranges, show month/day
+            return date.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' })
+          } else {
+            // For short ranges, show month/day
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+          }
+        },
+        rotate: timeRange >= 90 ? -45 : 0,
+        maxHeight: 100
       }
     },
     yaxis: {
@@ -175,6 +192,17 @@ const MainFeature = ({ onDataUpdate }) => {
     tooltip: {
       shared: true,
       intersect: false,
+      x: {
+        formatter: function(value) {
+          const date = new Date(timeSeriesData[value - 1]?.date)
+          return date.toLocaleDateString('en-US', { 
+            weekday: 'short',
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+          })
+        }
+      },
       y: {
         formatter: (value) => value.toLocaleString()
       }
