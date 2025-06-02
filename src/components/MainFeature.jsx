@@ -32,15 +32,61 @@ const MainFeature = ({ onDataUpdate }) => {
     activeCases: 21399000
   }
 
-  const mockCountries = [
-    { code: 'US', name: 'United States', cases: 103436829, deaths: 1127152, recovered: 101000000, population: 331900000 },
-    { code: 'IN', name: 'India', cases: 44690738, deaths: 530779, recovered: 44153796, population: 1380000000 },
-    { code: 'FR', name: 'France', cases: 38997490, deaths: 174627, recovered: 38500000, population: 67390000 },
-    { code: 'DE', name: 'Germany', cases: 38437756, deaths: 174979, recovered: 38000000, population: 83240000 },
-    { code: 'BR', name: 'Brazil', cases: 37519960, deaths: 689016, recovered: 36500000, population: 215300000 },
-    { code: 'JP', name: 'Japan', cases: 33803572, deaths: 74694, recovered: 33500000, population: 125800000 },
-    { code: 'KR', name: 'South Korea', cases: 31441184, deaths: 34141, recovered: 31200000, population: 51780000 },
-    { code: 'IT', name: 'Italy', cases: 25603510, deaths: 190357, recovered: 25200000, population: 59550000 }
+const mockCountries = [
+    { code: 'US', name: 'United States', flag: '🇺🇸', cases: 103436829, deaths: 1127152, recovered: 101000000, population: 331900000 },
+    { code: 'IN', name: 'India', flag: '🇮🇳', cases: 44690738, deaths: 530779, recovered: 44153796, population: 1380000000 },
+    { code: 'FR', name: 'France', flag: '🇫🇷', cases: 38997490, deaths: 174627, recovered: 38500000, population: 67390000 },
+    { code: 'DE', name: 'Germany', flag: '🇩🇪', cases: 38437756, deaths: 174979, recovered: 38000000, population: 83240000 },
+    { code: 'BR', name: 'Brazil', flag: '🇧🇷', cases: 37519960, deaths: 689016, recovered: 36500000, population: 215300000 },
+    { code: 'JP', name: 'Japan', flag: '🇯🇵', cases: 33803572, deaths: 74694, recovered: 33500000, population: 125800000 },
+    { code: 'KR', name: 'South Korea', flag: '🇰🇷', cases: 31441184, deaths: 34141, recovered: 31200000, population: 51780000 },
+    { code: 'IT', name: 'Italy', flag: '🇮🇹', cases: 25603510, deaths: 190357, recovered: 25200000, population: 59550000 },
+    { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', cases: 24500000, deaths: 205000, recovered: 24000000, population: 67330000 },
+    { code: 'RU', name: 'Russia', flag: '🇷🇺', cases: 22075858, deaths: 381327, recovered: 21500000, population: 144100000 },
+    { code: 'TR', name: 'Turkey', flag: '🇹🇷', cases: 17004677, deaths: 101492, recovered: 16800000, population: 84340000 },
+    { code: 'IR', name: 'Iran', flag: '🇮🇷', cases: 7572311, deaths: 144681, recovered: 7300000, population: 83990000 },
+    { code: 'ES', name: 'Spain', flag: '🇪🇸', cases: 13980340, deaths: 121852, recovered: 13700000, population: 47350000 },
+    { code: 'AR', name: 'Argentina', flag: '🇦🇷', cases: 10044957, deaths: 130472, recovered: 9800000, population: 45200000 },
+    { code: 'NL', name: 'Netherlands', flag: '🇳🇱', cases: 8606749, deaths: 22995, recovered: 8500000, population: 17440000 },
+    { code: 'PL', name: 'Poland', flag: '🇵🇱', cases: 6509398, deaths: 119296, recovered: 6300000, population: 37850000 },
+    { code: 'CO', name: 'Colombia', flag: '🇨🇴', cases: 6364536, deaths: 142414, recovered: 6100000, population: 50880000 },
+    { code: 'UA', name: 'Ukraine', flag: '🇺🇦', cases: 5488224, deaths: 110743, recovered: 5200000, population: 43730000 },
+    { code: 'MY', name: 'Malaysia', flag: '🇲🇾', cases: 5081110, deaths: 36938, recovered: 4900000, population: 32360000 },
+    { code: 'TH', name: 'Thailand', flag: '🇹🇭', cases: 4745235, deaths: 33058, recovered: 4600000, population: 69800000 },
+    { code: 'BE', name: 'Belgium', flag: '🇧🇪', cases: 4785738, deaths: 33192, recovered: 4600000, population: 11590000 },
+    { code: 'AT', name: 'Austria', flag: '🇦🇹', cases: 6069056, deaths: 21719, recovered: 5900000, population: 9006000 },
+    { code: 'IL', name: 'Israel', flag: '🇮🇱', cases: 4807557, deaths: 12490, recovered: 4700000, population: 9449000 },
+    { code: 'PT', name: 'Portugal', flag: '🇵🇹', cases: 5543629, deaths: 26695, recovered: 5400000, population: 10200000 },
+    { code: 'CZ', name: 'Czech Republic', flag: '🇨🇿', cases: 4662563, deaths: 42717, recovered: 4500000, population: 10710000 },
+    { code: 'AU', name: 'Australia', flag: '🇦🇺', cases: 11688803, deaths: 20152, recovered: 11500000, population: 25500000 },
+    { code: 'CA', name: 'Canada', flag: '🇨🇦', cases: 4683775, deaths: 51695, recovered: 4500000, population: 38010000 },
+    { code: 'CH', name: 'Switzerland', flag: '🇨🇭', cases: 4413337, deaths: 14409, recovered: 4300000, population: 8670000 },
+    { code: 'GR', name: 'Greece', flag: '🇬🇷', cases: 5767210, deaths: 37294, recovered: 5600000, population: 10420000 },
+    { code: 'CL', name: 'Chile', flag: '🇨🇱', cases: 5242906, deaths: 63412, recovered: 5100000, population: 19120000 },
+    { code: 'SE', name: 'Sweden', flag: '🇸🇪', cases: 2719939, deaths: 24265, recovered: 2600000, population: 10420000 },
+    { code: 'ID', name: 'Indonesia', flag: '🇮🇩', cases: 6824557, deaths: 161240, recovered: 6500000, population: 273500000 },
+    { code: 'MX', name: 'Mexico', flag: '🇲🇽', cases: 7633355, deaths: 333188, recovered: 7200000, population: 128900000 },
+    { code: 'PE', name: 'Peru', flag: '🇵🇪', cases: 4513749, deaths: 220239, recovered: 4200000, population: 32970000 },
+    { code: 'DK', name: 'Denmark', flag: '🇩🇰', cases: 3418589, deaths: 8420, recovered: 3300000, population: 5793000 },
+    { code: 'NO', name: 'Norway', flag: '🇳🇴', cases: 1494541, deaths: 5453, recovered: 1400000, population: 5421000 },
+    { code: 'FI', name: 'Finland', flag: '🇫🇮', cases: 1485625, deaths: 9515, recovered: 1400000, population: 5541000 },
+    { code: 'ZA', name: 'South Africa', flag: '🇿🇦', cases: 4077948, deaths: 102595, recovered: 3900000, population: 59310000 },
+    { code: 'EG', name: 'Egypt', flag: '🇪🇬', cases: 516023, deaths: 24613, recovered: 480000, population: 102300000 },
+    { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦', cases: 827697, deaths: 9608, recovered: 810000, population: 34810000 },
+    { code: 'AE', name: 'United Arab Emirates', flag: '🇦🇪', cases: 1045040, deaths: 2348, recovered: 1030000, population: 9890000 },
+    { code: 'SG', name: 'Singapore', flag: '🇸🇬', cases: 2266023, deaths: 1744, recovered: 2200000, population: 5850000 },
+    { code: 'NZ', name: 'New Zealand', flag: '🇳🇿', cases: 2869536, deaths: 3015, recovered: 2800000, population: 5122000 },
+    { code: 'VN', name: 'Vietnam', flag: '🇻🇳', cases: 11622194, deaths: 43206, recovered: 11400000, population: 97340000 },
+    { code: 'PH', name: 'Philippines', flag: '🇵🇭', cases: 4120494, deaths: 66254, recovered: 3900000, population: 109600000 },
+    { code: 'BD', name: 'Bangladesh', flag: '🇧🇩', cases: 2038644, deaths: 29444, recovered: 1980000, population: 164700000 },
+    { code: 'PK', name: 'Pakistan', flag: '🇵🇰', cases: 1580998, deaths: 30658, recovered: 1520000, population: 220900000 },
+    { code: 'HU', name: 'Hungary', flag: '🇭🇺', cases: 2203741, deaths: 48791, recovered: 2100000, population: 9660000 },
+    { code: 'RO', name: 'Romania', flag: '🇷🇴', cases: 3411663, deaths: 67712, recovered: 3300000, population: 19120000 },
+    { code: 'BG', name: 'Bulgaria', flag: '🇧🇬', cases: 1335003, deaths: 38363, recovered: 1270000, population: 6930000 },
+    { code: 'HR', name: 'Croatia', flag: '🇭🇷', cases: 1280894, deaths: 18302, recovered: 1230000, population: 4105000 },
+    { code: 'SK', name: 'Slovakia', flag: '🇸🇰', cases: 1868968, deaths: 21230, recovered: 1820000, population: 5460000 },
+    { code: 'IE', name: 'Ireland', flag: '🇮🇪', cases: 1719474, deaths: 8979, recovered: 1680000, population: 4990000 },
+    { code: 'LT', name: 'Lithuania', flag: '🇱🇹', cases: 1323470, deaths: 9697, recovered: 1290000, population: 2722000 }
   ]
 
   // Generate mock time series data
@@ -313,7 +359,7 @@ tooltip: {
                         <ApperIcon name="Globe" className="w-4 h-4 text-primary" />
                         Global Overview
                       </button>
-                      {filteredCountries.map((country) => (
+{filteredCountries.map((country) => (
                         <button
                           key={country.code}
                           onClick={() => {
@@ -321,9 +367,9 @@ tooltip: {
                             setIsDropdownOpen(false)
                             setSearchTerm('')
                           }}
-                          className="w-full px-4 py-3 text-left hover:bg-surface-50 dark:hover:bg-surface-700 flex items-center gap-2 text-sm"
+                          className="w-full px-4 py-3 text-left hover:bg-surface-50 dark:hover:bg-surface-700 flex items-center gap-3 text-sm"
                         >
-                          <ApperIcon name="MapPin" className="w-4 h-4 text-surface-500" />
+                          <span className="text-lg">{country.flag}</span>
                           {country.name}
                         </button>
                       ))}
